@@ -13,8 +13,7 @@ public class Simulator_Controller {
 
     public void simulate_state(Stick_State stickState, double max_ratio){
         Simulator simulator = new Simulator(motor_data);
-        for (int ratio = 1; ratio <= max_ratio; ratio += ratio_step) {
-
+        for (double ratio = 1; ratio <= max_ratio; ratio += ratio_step) {
             double max_recoverable_angle_rad = 0;
             while (true){
                 if(simulator.simulate(new Stick_State(stickState, ratio, max_recoverable_angle_rad + angle_step_rad))){
@@ -23,9 +22,18 @@ public class Simulator_Controller {
             }
             System.out.println("A gear ratio of: " + ratio + ", was able to recover from a maximum angle of: " + Math.toDegrees(max_recoverable_angle_rad) + " degrees.");
         }
+    }
 
-
-
+    public void simulator_debug(Stick_State stickState, double max_ratio){
+        Simulator simulator = new Simulator(motor_data);
+        double ratio = 1;
+            double max_recoverable_angle_rad = 0;
+            while (true){
+                if(simulator.simulate(new Stick_State(stickState, ratio, max_recoverable_angle_rad + angle_step_rad))){
+                    max_recoverable_angle_rad += angle_step_rad;
+                }else break;
+            }
+            System.out.println("A gear ratio of: " + ratio + ", was able to recover from a maximum angle of: " + Math.toDegrees(max_recoverable_angle_rad) + " degrees.");
     }
 
 }

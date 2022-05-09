@@ -10,13 +10,13 @@ public class Main {
 
         //////////////////////////////////////
         //stick parameters
-        double length_M = 0.25;
-        double stick_mass_kg = 3.75;
+        double length_M = 0.5;
+        double stick_mass_kg = 3.0;
         double flywheel_moi_kgm2 = 0.001170559;
 
         Stick_State base_state = new Stick_State(0,length_M, stick_mass_kg, 0, 0, flywheel_moi_kgm2, 0);
         Simulator_Controller simulator_controller= new Simulator_Controller(data);
-        simulator_controller.simulate_state(base_state,30);
+        simulator_controller.simulator_debug(base_state,30);
 
 
 

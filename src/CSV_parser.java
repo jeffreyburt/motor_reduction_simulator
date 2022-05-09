@@ -1,8 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
-
+//low level class, parses csv containing motor data
 public class CSV_parser {
 
     private final File file;
@@ -48,13 +47,3 @@ public class CSV_parser {
     }
 
 }
-
-
-
-
-
-
-
-
-
-

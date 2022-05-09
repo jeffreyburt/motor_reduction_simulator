@@ -2,18 +2,19 @@
 //low level class, returns whether a the stick is capable of recovering from a certain given Stick_State
 public class Simulator {
 
-    private final Stick_State state;
+    private Stick_State state;
     private final double[][] motor_data;
     private final double time_delta_sec = 0.05;
 
 
-    public Simulator(Stick_State state, double[][] motor_data){
-        this.state = state;
+    public Simulator(double[][] motor_data){
         this.motor_data = motor_data;
     }
 
-    public boolean simulate(){
+    public boolean simulate(Stick_State state){
+        this.state = state;
         while (true){
+            print_frame();
 
             //flywheel calculations and updates
             double flywheel_torque = calculate_flywheel_torque();
@@ -86,9 +87,8 @@ public class Simulator {
         state.setStick_deflection_rad(new_deflection);
     }
 
-
-
-
-
+    private void print_frame(){
+        System.out.println("Stick is at angle: " + state.getStick_deflection_degrees() + ", with motor speed of: " + state.getMotor_speed_rpm());
+    }
 
 }
